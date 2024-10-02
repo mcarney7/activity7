@@ -33,7 +33,7 @@ class _FadingTextAnimationState extends State<FadingTextAnimation> {
   // Function to toggle the visibility of the text
   void toggleVisibility() {
     setState(() {
-      // Inverting the visibility state on button press
+      // Inverting the visibility state on button press or tap
       _isVisible = !_isVisible;
     });
   }
@@ -48,17 +48,22 @@ class _FadingTextAnimationState extends State<FadingTextAnimation> {
       ),
       // Main content of the app
       body: Center(
-        // AnimatedOpacity widget to handle the fading animation
-        child: AnimatedOpacity(
-          // The opacity of the text depends on _isVisible variable
-          opacity: _isVisible ? 1.0 : 0.0,
-          // Duration of the fade animation
-          duration: Duration(seconds: 1),
-          // The text that will fade in and out
-          child: const Text(
-            'Hello, Flutter!',
-            // Styling the text
-            style: TextStyle(fontSize: 24),
+        // GestureDetector to handle tapping on the text to toggle visibility
+        child: GestureDetector(
+          onTap: toggleVisibility, // Toggles visibility when the text is tapped
+          child: AnimatedOpacity(
+            // The opacity of the text depends on _isVisible variable
+            opacity: _isVisible ? 1.0 : 0.0,
+            // Duration of the fade animation
+            duration: const Duration(seconds: 1),
+            // Adding a curve to the animation for a smoother effect
+            curve: Curves.easeInOut,
+            // The text that will fade in and out
+            child: const Text(
+              'Hello, Flutter!',
+              // Styling the text
+              style: TextStyle(fontSize: 24),
+            ),
           ),
         ),
       ),
