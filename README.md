@@ -1,4 +1,4 @@
-# activity7
+# MAD activity7
 
 A new Flutter project.
 
